@@ -506,6 +506,7 @@ body.dark-mode footer {
     }
 }
 
+/* Mobile nav (light mode default) */
 @media (max-width: 768px) {
     .hamburger {
         display: flex;
@@ -558,6 +559,17 @@ body.dark-mode footer {
     .btn {
         padding: 0.6rem 1.2rem;
         font-size: 0.9rem;
+    }
+
+    /* Dark mode override for mobile nav */
+    body.dark-mode .nav-links {
+        background: #1e1e1e;
+        /* dark background */
+    }
+
+    body.dark-mode .nav-links a {
+        color: #eee;
+        /* visible text */
     }
 }
 
