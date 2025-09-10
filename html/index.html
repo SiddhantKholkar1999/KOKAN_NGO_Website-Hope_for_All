@@ -2,11 +2,11 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hope for All - Empowering Lives</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/index.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
@@ -15,15 +15,22 @@
     <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="logo">Hope for All</div>
-        <ul class="nav-links">
+
+        <!-- Hamburger -->
+        <div class="hamburger" id="hamburger">
+            <span></span><span></span><span></span>
+        </div>
+
+        <ul class="nav-links" id="nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#work">Our Work</a></li>
             <li><a href="#donate">Get Involved</a></li>
             <li><a href="#footer">Contact</a></li>
         </ul>
+
         <div class="toggle-switch">
-            <input type="checkbox" id="theme-toggle">
+            <input type="checkbox" id="theme-toggle" />
             <label for="theme-toggle" class="slider">
                 <span class="icon sun">☀️</span>
                 <span class="icon moon">🌙</span>
@@ -31,7 +38,7 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero Section with Carousel -->
     <header id="home">
         <div class="carousel">
             <div class="slides">
@@ -39,10 +46,8 @@
                 <div class="slide slide2"></div>
                 <div class="slide slide3"></div>
             </div>
-            <!-- Arrows -->
             <button class="prev">&#10094;</button>
             <button class="next">&#10095;</button>
-            <!-- Dots -->
             <div class="dots">
                 <span class="dot active"></span>
                 <span class="dot"></span>
@@ -68,23 +73,19 @@
             alt="Community Work" class="community-img">
     </section>
 
-
     <!-- Our Work -->
-    <section class="our-work" id="work">
+    <section class="our-work reveal" id="work">
         <h2>Our Work</h2>
         <div class="work">
-            <div class="card">
-                <i class="fas fa-book-open fa-3x"></i>
+            <div class="card reveal"><i class="fas fa-book-open fa-3x"></i>
                 <h3>Child Education</h3>
                 <p>Providing access to quality education for underprivileged children.</p>
             </div>
-            <div class="card">
-                <i class="fas fa-venus fa-3x"></i>
+            <div class="card reveal"><i class="fas fa-venus fa-3x"></i>
                 <h3>Women Empowerment</h3>
                 <p>Supporting women with resources and training for independence.</p>
             </div>
-            <div class="card">
-                <i class="fas fa-tools fa-3x"></i>
+            <div class="card reveal"><i class="fas fa-tools fa-3x"></i>
                 <h3>Skill Training</h3>
                 <p>Equipping communities with skills for sustainable livelihoods.</p>
             </div>
@@ -92,7 +93,7 @@
     </section>
 
     <!-- Get Involved -->
-    <section class="get-involved" id="donate">
+    <section class="get-involved reveal" id="donate">
         <h2>Get Involved</h2>
         <p style="text-align:center; margin-bottom:20px;">Join us in making a difference. Volunteer your time or donate
             to support our cause.</p>
@@ -109,7 +110,7 @@
     </section>
 
     <!-- Footer -->
-    <footer id="footer">
+    <footer id="footer" class="reveal">
         <p>Our Focus: Child Education | Women Empowerment | Skill Training</p>
         <p>Contact: hopeforall@example.com | +91 9876543210</p>
         <div class="social">

@@ -2,60 +2,64 @@
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', e => {
         e.preventDefault();
-        document.querySelector(anchor.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+        document.querySelector(anchor.getAttribute('href'))
+        .scrollIntoView({ behavior: 'smooth' });
+        // Auto-close mobile menu
+        navLinks.classList.remove("active");
+        hamburger.classList.remove("open");
     });
 });
 
 // Dark/Light mode toggle
-const toggleSwitch = document.getElementById('theme-toggle');
-toggleSwitch.addEventListener('change', () => {
-    document.body.classList.toggle('dark-mode', toggleSwitch.checked);
-});
+document.getElementById('theme-toggle')
+    .addEventListener('change', e => {
+        document.body.classList.toggle('dark-mode', e.target.checked);
+    });
 
-// Back to Top button
+// Back to Top
 const backToTop = document.getElementById("backToTop");
 window.addEventListener("scroll", () => {
     backToTop.style.display = window.scrollY > 300 ? "block" : "none";
 });
-backToTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+backToTop.addEventListener("click", () =>
+    window.scrollTo({ top: 0, behavior: "smooth" })
+);
+
+// Hamburger menu
+const hamburger = document.getElementById("hamburger");
+const navLinks = document.getElementById("nav-links");
+hamburger.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
+    hamburger.classList.toggle("open");
+});
 
 // Carousel
 let currentIndex = 0;
 const slides = document.querySelector(".slides");
-const totalSlides = document.querySelectorAll(".slide").length;
 const dots = document.querySelectorAll(".dot");
+const totalSlides = dots.length;
 
 function updateCarousel() {
     slides.style.transform = `translateX(-${currentIndex * 100}%)`;
     dots.forEach((dot, i) => dot.classList.toggle("active", i === currentIndex));
 }
-
 document.querySelector(".next").addEventListener("click", () => {
-    currentIndex = (currentIndex + 1) % totalSlides;
-    updateCarousel();
+    currentIndex = (currentIndex + 1) % totalSlides; updateCarousel();
 });
 document.querySelector(".prev").addEventListener("click", () => {
-    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-    updateCarousel();
+    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides; updateCarousel();
 });
 dots.forEach((dot, i) => dot.addEventListener("click", () => {
     currentIndex = i; updateCarousel();
 }));
-
-// Auto-slide
 setInterval(() => {
-    currentIndex = (currentIndex + 1) % totalSlides;
-    updateCarousel();
+    currentIndex = (currentIndex + 1) % totalSlides; updateCarousel();
 }, 5000);
 
 // Scroll reveal animation
 function revealOnScroll() {
     document.querySelectorAll(".reveal").forEach(el => {
-        const windowHeight = window.innerHeight;
-        const elementTop = el.getBoundingClientRect().top;
-        const elementVisible = 100;
-
-        if (elementTop < windowHeight - elementVisible) {
+        if (el.getBoundingClientRect().top < window.innerHeight - 100) {
         el.classList.add("active");
         } else {
         el.classList.remove("active");
