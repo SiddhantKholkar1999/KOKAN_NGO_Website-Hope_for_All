@@ -1,0 +1,513 @@
+/* -------------------------
+   Global Reset & Typography
+-------------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    line-height: 1.6;
+    background: #fff;
+    color: #333;
+    transition: background 0.3s, color 0.3s;
+}
+
+/* -------------------------
+   Navbar
+-------------------------- */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.navbar .logo {
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: #ff5722;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #ff5722;
+}
+
+/* -------------------------
+   Dark/Light Toggle Switch
+-------------------------- */
+.toggle-switch {
+    position: relative;
+    width: 60px;
+    height: 30px;
+}
+
+.toggle-switch input {
+    display: none;
+}
+
+.slider {
+    background: #f1c40f;
+    border-radius: 30px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5px;
+    height: 100%;
+    transition: background 0.3s ease;
+}
+
+.slider::before {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 24px;
+    height: 24px;
+    background: #fff;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.icon {
+    font-size: 0.9rem;
+    z-index: 1;
+    transition: opacity 0.3s;
+}
+
+.slider .sun {
+    opacity: 1;
+}
+
+.slider .moon {
+    opacity: 0.2;
+}
+
+.toggle-switch input:checked+.slider {
+    background: #2c3e50;
+}
+
+.toggle-switch input:checked+.slider::before {
+    transform: translateX(30px);
+}
+
+.toggle-switch input:checked+.slider .sun {
+    opacity: 0.2;
+}
+
+.toggle-switch input:checked+.slider .moon {
+    opacity: 1;
+}
+
+/* -------------------------
+   Hero + Carousel
+-------------------------- */
+header {
+    margin-top: 60px;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.carousel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.slides {
+    display: flex;
+    width: 300%;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    min-width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Real images */
+.slide1 {
+    background-image: url('https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=1600&q=80');
+}
+
+.slide2 {
+    background-image: url('https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=1600&q=80');
+}
+
+.slide3 {
+    background-image: url('https://images.unsplash.com/photo-1581091215367-59ab6b47c90e?auto=format&fit=crop&w=1600&q=80');
+}
+
+/* Arrows */
+.prev,
+.next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 2;
+    transition: background 0.3s;
+}
+
+.prev:hover,
+.next:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.prev {
+    left: 20px;
+}
+
+.next {
+    right: 20px;
+}
+
+/* Dots */
+.dots {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+    z-index: 2;
+}
+
+.dot {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin: 0 5px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.dot.active {
+    background: #ff5722;
+}
+
+/* Hero text */
+.hero-text {
+    position: relative;
+    z-index: 1;
+    color: #fff;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.hero-text h1 {
+    font-size: 3rem;
+}
+
+.hero-text p {
+    margin: 1rem 0;
+    font-size: 1.2rem;
+}
+
+.btn {
+    background: #ff5722;
+    color: #fff;
+    padding: 0.8rem 1.5rem;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.btn:hover {
+    background: #e64a19;
+}
+
+/* -------------------------
+   Sections
+-------------------------- */
+section {
+    padding: 60px 20px;
+    max-width: 1100px;
+    margin: auto;
+}
+
+section h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2rem;
+    color: #222;
+}
+
+.about img {
+    max-width: 100%;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.work {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.card i {
+    margin-bottom: 15px;
+    color: #ff5722;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.get-involved form {
+    display: grid;
+    gap: 15px;
+    max-width: 500px;
+    margin: auto;
+}
+
+input,
+select,
+button {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+button {
+    background: #ff5722;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #e64a19;
+}
+
+/* -------------------------
+   Footer
+-------------------------- */
+footer {
+    background: #222;
+    color: #fff;
+    text-align: center;
+    padding: 30px 20px;
+}
+
+footer .social a {
+    margin: 0 10px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: color 0.3s;
+}
+
+footer .social a:hover {
+    color: #ff5722;
+}
+
+/* -------------------------
+   Back to Top
+-------------------------- */
+#backToTop {
+    display: none;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 999;
+    background: #ff5722;
+    color: #fff;
+    border: none;
+    padding: 12px 16px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background 0.3s;
+}
+
+#backToTop:hover {
+    background: #e64a19;
+}
+
+/* -------------------------
+   Dark Mode Overrides
+-------------------------- */
+body.dark-mode {
+    background: #121212;
+    color: #eee;
+}
+
+body.dark-mode .navbar {
+    background: #1e1e1e;
+}
+
+body.dark-mode .nav-links a {
+    color: #eee;
+}
+
+body.dark-mode .card {
+    background: #1e1e1e;
+    color: #eee;
+}
+
+body.dark-mode footer {
+    background: #111;
+}
+
+/* Reusable button styles */
+.btn,
+button,
+.nav-links a {
+    transition: all 0.3s ease;
+}
+
+/* Primary buttons */
+.btn,
+button {
+    background: #ff5722;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transform: translateY(0);
+}
+
+.btn:hover,
+button:hover {
+    background: #e64a19;
+    transform: translateY(-3px);
+    /* subtle lift */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Nav links hover */
+.nav-links a:hover {
+    color: #ff5722;
+    transform: scale(1.05);
+}
+
+/* Carousel arrows */
+.prev,
+.next {
+    transition: all 0.3s ease;
+}
+
+.prev:hover,
+.next:hover {
+    background: rgba(0, 0, 0, 0.8);
+    transform: scale(1.2);
+}
+
+/* Back to Top button */
+#backToTop {
+    transition: all 0.3s ease;
+}
+
+#backToTop:hover {
+    background: #e64a19;
+    transform: translateY(-4px) scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Footer social icons */
+footer .social a {
+    margin: 0 10px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2rem;
+    display: inline-block;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+footer .social a:hover {
+    color: #ff5722;
+    transform: scale(1.3) rotate(10deg);
+}
+
+/* Form inputs and selects */
+input,
+select,
+textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+/* Hover effect */
+input:hover,
+select:hover,
+textarea:hover {
+    border-color: #ff5722;
+}
+
+/* Focus effect */
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #ff5722;
+    box-shadow: 0 0 8px rgba(255, 87, 34, 0.6);
+}
+
+/* Work cards */
+.card {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Hover effect */
+.card:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
