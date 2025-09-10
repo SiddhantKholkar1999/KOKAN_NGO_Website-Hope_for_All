@@ -47,3 +47,20 @@ setInterval(() => {
     currentIndex = (currentIndex + 1) % totalSlides;
     updateCarousel();
 }, 5000);
+
+// Scroll reveal animation
+function revealOnScroll() {
+    document.querySelectorAll(".reveal").forEach(el => {
+        const windowHeight = window.innerHeight;
+        const elementTop = el.getBoundingClientRect().top;
+        const elementVisible = 100;
+
+        if (elementTop < windowHeight - elementVisible) {
+        el.classList.add("active");
+        } else {
+        el.classList.remove("active");
+        }
+    });
+}
+window.addEventListener("scroll", revealOnScroll);
+window.addEventListener("load", revealOnScroll);
