@@ -13,6 +13,7 @@ body {
     background: #fff;
     color: #333;
     transition: background 0.3s, color 0.3s;
+    padding-top: 60px;
 }
 
 /* -------------------------
@@ -23,13 +24,25 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    background: #fff;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 30px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px 30px;
+    /* taller padding */
+    height: 70px;
+    /* default height */
     z-index: 1000;
+    transition: background 0.4s, box-shadow 0.3s, height 0.3s, padding 0.3s;
+    background: transparent;
+}
+
+.navbar.scrolled {
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    height: 50px;
+    /* shrink height */
+    padding: 10px 30px;
+    /* reduce padding */
 }
 
 .navbar .logo {
@@ -155,7 +168,7 @@ body {
    Hero + Carousel
 -------------------------- */
 header {
-    margin-top: 60px;
+    /* margin-top: 60px; */
     height: 100vh;
     position: relative;
     display: flex;
@@ -471,6 +484,16 @@ body.dark-mode .nav-links a {
     color: #eee;
 }
 
+body.dark-mode .nav-links {
+    background: #1e1e1e;
+}
+
+body.dark-mode .hamburger span,
+body.dark-mode .hamburger.open span:nth-child(1),
+body.dark-mode .hamburger.open span:nth-child(3) {
+    background: #eee;
+}
+
 body.dark-mode .card {
     background: #1e1e1e;
     color: #eee;
@@ -481,7 +504,7 @@ body.dark-mode footer {
 }
 
 /* -------------------------
-   Responsive Design
+   Responsive
 -------------------------- */
 @media (max-width: 1024px) {
     .hero-text h1 {
@@ -506,28 +529,52 @@ body.dark-mode footer {
     }
 }
 
-/* Mobile nav (light mode default) */
 @media (max-width: 768px) {
+    .navbar {
+        justify-content: space-between;
+        position: fixed;
+    }
+
+    /* Hamburger on the left */
     .hamburger {
         display: flex;
+        order: -1;
+        margin-right: auto;
+    }
+
+    /* Center the logo absolutely */
+    .navbar .logo {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        margin: 0;
+    }
+
+    /* Keep toggle on the right */
+    .toggle-switch {
         margin-left: auto;
     }
 
+    /* Mobile nav menu */
     .nav-links {
-        display: none;
         flex-direction: column;
         width: 100%;
-        background: #fff;
         position: absolute;
         top: 60px;
         left: 0;
-        padding: 10px 0;
+        padding: 0;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         z-index: 999;
+
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease;
+        background: #fff;
     }
 
     .nav-links.active {
-        display: flex;
+        max-height: 500px;
+        padding: 10px 0;
     }
 
     .nav-links li {
@@ -540,6 +587,7 @@ body.dark-mode footer {
         width: 100%;
     }
 
+    /* Hero & sections adjustments */
     .hero-text h1 {
         font-size: 2rem;
     }
@@ -559,17 +607,6 @@ body.dark-mode footer {
     .btn {
         padding: 0.6rem 1.2rem;
         font-size: 0.9rem;
-    }
-
-    /* Dark mode override for mobile nav */
-    body.dark-mode .nav-links {
-        background: #1e1e1e;
-        /* dark background */
-    }
-
-    body.dark-mode .nav-links a {
-        color: #eee;
-        /* visible text */
     }
 }
 

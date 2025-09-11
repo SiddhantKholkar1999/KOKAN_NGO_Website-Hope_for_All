@@ -1,23 +1,33 @@
-// Smooth scroll
+// Elements
+const hamburger = document.getElementById("hamburger");
+const navLinks = document.getElementById("nav-links");
+const toggleSwitch = document.getElementById("theme-toggle");
+const backToTop = document.getElementById("backToTop");
+const navbar = document.querySelector(".navbar");
+
+// -------------------------
+// Smooth scroll + auto-close menu
+// -------------------------
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', e => {
+    anchor.addEventListener("click", e => {
         e.preventDefault();
-        document.querySelector(anchor.getAttribute('href'))
-        .scrollIntoView({ behavior: 'smooth' });
-        // Auto-close mobile menu
+        document.querySelector(anchor.getAttribute("href"))
+        .scrollIntoView({ behavior: "smooth" });
         navLinks.classList.remove("active");
         hamburger.classList.remove("open");
     });
 });
 
+// -------------------------
 // Dark/Light mode toggle
-document.getElementById('theme-toggle')
-    .addEventListener('change', e => {
-        document.body.classList.toggle('dark-mode', e.target.checked);
-    });
+// -------------------------
+toggleSwitch.addEventListener("change", e => {
+    document.body.classList.toggle("dark-mode", e.target.checked);
+});
 
+// -------------------------
 // Back to Top
-const backToTop = document.getElementById("backToTop");
+// -------------------------
 window.addEventListener("scroll", () => {
     backToTop.style.display = window.scrollY > 300 ? "block" : "none";
 });
@@ -25,15 +35,17 @@ backToTop.addEventListener("click", () =>
     window.scrollTo({ top: 0, behavior: "smooth" })
 );
 
+// -------------------------
 // Hamburger menu
-const hamburger = document.getElementById("hamburger");
-const navLinks = document.getElementById("nav-links");
+// -------------------------
 hamburger.addEventListener("click", () => {
     navLinks.classList.toggle("active");
     hamburger.classList.toggle("open");
 });
 
+// -------------------------
 // Carousel
+// -------------------------
 let currentIndex = 0;
 const slides = document.querySelector(".slides");
 const dots = document.querySelectorAll(".dot");
@@ -56,8 +68,11 @@ setInterval(() => {
     currentIndex = (currentIndex + 1) % totalSlides; updateCarousel();
 }, 5000);
 
-// Scroll reveal animation
-function revealOnScroll() {
+// -------------------------
+// Scroll reveal + Navbar effect
+// -------------------------
+function handleScrollEffects() {
+    // Scroll reveal
     document.querySelectorAll(".reveal").forEach(el => {
         if (el.getBoundingClientRect().top < window.innerHeight - 100) {
         el.classList.add("active");
@@ -65,6 +80,13 @@ function revealOnScroll() {
         el.classList.remove("active");
         }
     });
+
+    // Navbar transparent -> solid
+    if (window.scrollY > 50) {
+        navbar.classList.add("scrolled");
+    } else {
+        navbar.classList.remove("scrolled");
+    }
 }
-window.addEventListener("scroll", revealOnScroll);
-window.addEventListener("load", revealOnScroll);
+window.addEventListener("scroll", handleScrollEffects);
+window.addEventListener("load", handleScrollEffects);
