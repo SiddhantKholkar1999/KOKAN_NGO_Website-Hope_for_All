@@ -518,6 +518,11 @@ body.dark-mode footer .social a:hover {
     transform: scale(1.3) rotate(10deg);
 }
 
+body.dark-mode .nav-links a:hover {
+    color: #ff5722;
+    transform: scale(1.05);
+}
+
 /* -------------------------
    Responsive
 -------------------------- */
