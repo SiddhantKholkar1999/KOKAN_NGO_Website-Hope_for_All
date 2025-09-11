@@ -44,7 +44,7 @@ hamburger.addEventListener("click", () => {
 });
 
 // -------------------------
-// Carousel
+// Carousel with Swipe Support
 // -------------------------
 let currentIndex = 0;
 const slides = document.querySelector(".slides");
@@ -55,18 +55,59 @@ function updateCarousel() {
     slides.style.transform = `translateX(-${currentIndex * 100}%)`;
     dots.forEach((dot, i) => dot.classList.toggle("active", i === currentIndex));
 }
-document.querySelector(".next").addEventListener("click", () => {
-    currentIndex = (currentIndex + 1) % totalSlides; updateCarousel();
+
+// Arrows (desktop/tablet only)
+document.querySelector(".next")?.addEventListener("click", () => {
+    currentIndex = (currentIndex + 1) % totalSlides;
+    updateCarousel();
 });
-document.querySelector(".prev").addEventListener("click", () => {
-    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides; updateCarousel();
+document.querySelector(".prev")?.addEventListener("click", () => {
+    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+    updateCarousel();
 });
-dots.forEach((dot, i) => dot.addEventListener("click", () => {
-    currentIndex = i; updateCarousel();
-}));
-setInterval(() => {
-    currentIndex = (currentIndex + 1) % totalSlides; updateCarousel();
+
+// Dots click
+dots.forEach((dot, i) =>
+    dot.addEventListener("click", () => {
+        currentIndex = i;
+        updateCarousel();
+    })
+);
+
+// Autoplay (desktop/tablet only)
+let autoPlay = setInterval(() => {
+    currentIndex = (currentIndex + 1) % totalSlides;
+    updateCarousel();
 }, 5000);
+
+// -------------------------
+// Swipe / Touch Sliding (mobile)
+// -------------------------
+let startX = 0;
+let endX = 0;
+
+slides.addEventListener("touchstart", e => {
+    startX = e.touches[0].clientX;
+});
+
+slides.addEventListener("touchend", e => {
+    endX = e.changedTouches[0].clientX;
+    handleSwipe();
+});
+
+function handleSwipe() {
+    let diff = startX - endX;
+    if (Math.abs(diff) > 50) { // threshold to avoid accidental taps
+        if (diff > 0) {
+        // swipe left -> next
+        currentIndex = (currentIndex + 1) % totalSlides;
+        } else {
+        // swipe right -> prev
+        currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+        }
+        updateCarousel();
+    }
+}
 
 // -------------------------
 // Scroll reveal + Navbar effect

@@ -1,5 +1,5 @@
 /* -------------------------
-   Global Reset & Typography
+   Reset & Typography
 -------------------------- */
 * {
     margin: 0;
@@ -13,11 +13,12 @@ body {
     background: #fff;
     color: #333;
     transition: background 0.3s, color 0.3s;
-    padding-top: 60px;
+    padding-top: 70px;
+    /* offset for fixed navbar */
 }
 
 /* -------------------------
-   Navbar
+   Navbar (Fixed + Shrink on Scroll)
 -------------------------- */
 .navbar {
     position: fixed;
@@ -28,9 +29,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 20px 30px;
-    /* taller padding */
     height: 70px;
-    /* default height */
     z-index: 1000;
     transition: background 0.4s, box-shadow 0.3s, height 0.3s, padding 0.3s;
     background: transparent;
@@ -40,9 +39,7 @@ body {
     background: #fff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     height: 50px;
-    /* shrink height */
     padding: 10px 30px;
-    /* reduce padding */
 }
 
 .navbar .logo {
@@ -168,8 +165,8 @@ body {
    Hero + Carousel
 -------------------------- */
 header {
-    /* margin-top: 60px; */
     height: 100vh;
+    min-height: 400px;
     position: relative;
     display: flex;
     align-items: center;
@@ -179,7 +176,7 @@ header {
 
 .carousel {
     position: absolute;
-    top: 0;
+    top: 20px;
     left: 0;
     width: 100%;
     height: 100%;
@@ -188,7 +185,7 @@ header {
 
 .slides {
     display: flex;
-    width: 300%;
+    width: 100%;
     height: 100%;
     transition: transform 0.5s ease-in-out;
 }
@@ -196,21 +193,16 @@ header {
 .slide {
     min-width: 100%;
     height: 100%;
-    background-size: cover;
-    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/* Real images */
-.slide1 {
-    background-image: url('https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=1600&q=80');
-}
-
-.slide2 {
-    background-image: url('https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=1600&q=80');
-}
-
-.slide3 {
-    background-image: url('https://images.unsplash.com/photo-1581091215367-59ab6b47c90e?auto=format&fit=crop&w=1600&q=80');
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* or switch to contain if you prefer full image fit */
 }
 
 /* Arrows */
@@ -327,7 +319,7 @@ section h2 {
 
 .community-img {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .community-img:hover {
@@ -356,8 +348,10 @@ section h2 {
 }
 
 .card:hover {
-    transform: translateY(-10px) scale(1.05);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    transform: translateY(-12px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    background: lightcoral;
+    /* brighten slightly */
 }
 
 .get-involved form {
@@ -396,7 +390,6 @@ button {
     background: #ff5722;
     color: #fff;
     cursor: pointer;
-    transform: translateY(0);
 }
 
 button:hover {
@@ -421,7 +414,7 @@ footer .social a {
     text-decoration: none;
     font-size: 1.2rem;
     display: inline-block;
-    transition: transform 0.3s ease, color 0.3s ease;
+    transition: transform 0.3s, color 0.3s;
 }
 
 footer .social a:hover {
@@ -445,7 +438,7 @@ footer .social a:hover {
     border-radius: 50%;
     cursor: pointer;
     font-size: 18px;
-    transition: all 0.3s ease;
+    transition: all 0.3s;
 }
 
 #backToTop:hover {
@@ -480,12 +473,34 @@ body.dark-mode .navbar {
     background: #1e1e1e;
 }
 
+body.dark-mode .nav-links,
+body.dark-mode .card {
+    background: #1e1e1e;
+    color: #eee;
+}
+
+body.dark-mode .card {
+    background: #1e1e1e;
+    color: #eee;
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode .card:hover {
+    transform: translateY(-12px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
+    background: #2a2a2a;
+}
+
 body.dark-mode .nav-links a {
     color: #eee;
 }
 
-body.dark-mode .nav-links {
-    background: #1e1e1e;
+body.dark-mode section h2,
+body.dark-mode footer h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2rem;
+    color: crimson;
 }
 
 body.dark-mode .hamburger span,
@@ -494,13 +509,13 @@ body.dark-mode .hamburger.open span:nth-child(3) {
     background: #eee;
 }
 
-body.dark-mode .card {
-    background: #1e1e1e;
-    color: #eee;
-}
-
 body.dark-mode footer {
     background: #111;
+}
+
+body.dark-mode footer .social a:hover {
+    color: #ff5722;
+    transform: scale(1.3) rotate(10deg);
 }
 
 /* -------------------------
@@ -530,46 +545,43 @@ body.dark-mode footer {
 }
 
 @media (max-width: 768px) {
+    .prev,
+    .next {
+        display: none;
+    }
     .navbar {
         justify-content: space-between;
         position: fixed;
     }
 
-    /* Hamburger on the left */
     .hamburger {
         display: flex;
         order: -1;
         margin-right: auto;
     }
 
-    /* Center the logo absolutely */
     .navbar .logo {
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
-        margin: 0;
     }
 
-    /* Keep toggle on the right */
     .toggle-switch {
         margin-left: auto;
     }
 
-    /* Mobile nav menu */
     .nav-links {
         flex-direction: column;
         width: 100%;
-        position: absolute;
-        top: 60px;
+        position: fixed;
+        top: 70px;
         left: 0;
-        padding: 0;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        z-index: 999;
-
+        background: #fff;
         max-height: 0;
         overflow: hidden;
         transition: max-height 0.4s ease;
-        background: #fff;
+        z-index: 999;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
 
     .nav-links.active {
@@ -587,7 +599,6 @@ body.dark-mode footer {
         width: 100%;
     }
 
-    /* Hero & sections adjustments */
     .hero-text h1 {
         font-size: 2rem;
     }
@@ -607,6 +618,19 @@ body.dark-mode footer {
     .btn {
         padding: 0.6rem 1.2rem;
         font-size: 0.9rem;
+    }
+
+    .card:hover {
+        transform: translateY(-12px) scale(1.05);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+        background: lightcoral;
+        /* brighten slightly */
+    }
+
+    body.dark-mode .card:hover {
+        transform: translateY(-12px) scale(1.05);
+        box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
+        background: #2a2a2a;
     }
 }
 
